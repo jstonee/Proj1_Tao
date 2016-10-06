@@ -61,7 +61,8 @@ int main(int argc, char* argv[])
 	}
 
 	fixedKey = removeDuplicates(tempKey);
-
+	initializeEncryptArray(fixedKey, encrypt);
+	
 	fclose(fin);
 	fclose(fout);
 
@@ -89,4 +90,13 @@ char * removeDuplicates(char word[])
 
 	}
 	return temp;
+}
+
+void initializeEncryptArray(char key[], char encrypt[])
+{
+	int i = 0;
+	for (i; i < 26; i++)
+	{
+		encrypt[i] = key[i];
+	}
 }
