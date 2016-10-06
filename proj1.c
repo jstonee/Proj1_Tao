@@ -62,7 +62,8 @@ int main(int argc, char* argv[])
 
 	fixedKey = removeDuplicates(tempKey);
 	initializeEncryptArray(fixedKey, encrypt);
-	
+	initializeDecryptArray(encrypt, decrypt);
+		
 	fclose(fin);
 	fclose(fout);
 
@@ -112,5 +113,17 @@ void initializeEncryptArray(char key[], char encrypt[])
 	for (i; i < 26; i++)
 	{
 		encrypt[i] = key[i];
+	}
+}
+
+void initializeDecryptArray(char encrypt[], char decrypt[])
+{
+	char * temp;
+	int i = 0, x;
+	for (i; i < 26; i++)
+	{
+		temp = strchr(encrypt, ('A' + i));
+		x = temp - encrypt;
+		decrypt[i] = (char)(x+65);
 	}
 }
