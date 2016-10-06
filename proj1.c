@@ -92,6 +92,20 @@ char * removeDuplicates(char word[])
 	return temp;
 }
 
+int targetFound(char charArray[], int num, char target)
+{
+	int found = 0;
+	if (isupper(target))
+	{
+			found = num - 'A';
+	}
+	if (islower(target))
+	{
+			found = num - 'a';
+	}
+	return found;
+}
+
 void initializeEncryptArray(char key[], char encrypt[])
 {
 	int i = 0;
