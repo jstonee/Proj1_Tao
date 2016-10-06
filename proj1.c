@@ -63,7 +63,11 @@ int main(int argc, char* argv[])
 	fixedKey = removeDuplicates(tempKey);
 	initializeEncryptArray(fixedKey, encrypt);
 	initializeDecryptArray(encrypt, decrypt);
-		
+	if (choice == 1)
+		processInput(fin, fout, encrypt);
+	if (choice == 2)
+		processInput(fin, fout, decrypt);
+
 	fclose(fin);
 	fclose(fout);
 
@@ -107,6 +111,7 @@ int targetFound(char charArray[], int num, char target)
 	return found;
 }
 
+
 void initializeEncryptArray(char key[], char encrypt[])
 {
 	int i = 0;
@@ -125,5 +130,20 @@ void initializeDecryptArray(char encrypt[], char decrypt[])
 		temp = strchr(encrypt, ('A' + i));
 		x = temp - encrypt;
 		decrypt[i] = (char)(x+65);
+	}
+}
+
+void processInput(FILE * inf, FILE * outf, char substitute[])
+{
+	char ch;
+
+	while (fscanf(inf, "%c", &ch) != EOF)
+	{
+		if (isupper(ch))
+			fprintf(outf, "%c", substitute[targetFound(substitute, ch, ch)]);
+		if (islower(ch))
+			fprintf(outf, "%c", (char)tolower(substitute[targetFound(substitute, ch, ch)]));
+		if (!isupper(ch) && !islower(ch))
+			fprintf(outf, "%c", ch);
 	}
 }
